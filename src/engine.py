@@ -1,16 +1,26 @@
 import importlib
+import sys
 
+def install_package(module_name,head_list):
+    import subprocess
+    subprocess.check_call(head_list+['install', module_name])
+    print(f"{module_name} installed successfully.")
 def install_module(module_name):
     try:
         importlib.import_module(module_name)
     except ImportError:
         print(f"{module_name} not found. Installing...")
         try:
-            import subprocess
-            subprocess.check_call(['pip', 'install', module_name])
-            print(f"{module_name} installed successfully.")
+            install_package(module_name,["pip"])
         except Exception as e:
             print(f"Failed to install {module_name}. Error: {e}")
+            print("Trying the other way...")
+            try:
+                install_package(module_name,["python","-m","pip"])
+            except Exception as e:
+                print(f"Failed to install {module_name}. Error: {e}")
+                print("Seems like you don't have pip!")
+            
 
 
 def main():
@@ -33,8 +43,12 @@ def main():
 
     # Command-line interface loop
     while True:
-        text_input = str(input(".. "))
-        _listener.map_input(text_input)
+        try:
+            text_input = str(input(".. "))
+            _listener.map_input(text_input)
+        except KeyboardInterrupt as _:
+            print("quit...")
+            sys.exit(0)
 
 if __name__ == '__main__':
     main()
