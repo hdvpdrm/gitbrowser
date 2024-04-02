@@ -78,4 +78,5 @@ clear terminal screen
 MIT license
 
 ## Contact & contribute
-Get in touch with me at raresrechesan26@gmail.com
+Get in touch with me at raresrechesan26@gmail.com (author of original repo)
+If you want to have a contact with me, than send me e-mail hardcoderyan@gmail.com(hdvpdrm)
