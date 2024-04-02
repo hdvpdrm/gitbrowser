@@ -59,6 +59,7 @@ options perpage [count]
 Exit
 ```bash
 exit
+```
 
 ```bash
 help [command]
@@ -71,7 +72,7 @@ clear
 
 clear terminal screen
 ```
-```
+
 
 ## License
 MIT license
