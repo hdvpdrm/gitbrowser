@@ -50,7 +50,7 @@ def main():
             text_input = str(input(".. "))
             _listener.map_input(text_input)
         except KeyboardInterrupt as _:
-            print("/nquit...")
+            print("\nquit...")
             sys.exit(0)
 
 if __name__ == '__main__':
