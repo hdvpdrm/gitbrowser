@@ -22,9 +22,16 @@ class Listener:
             'repo': self.repo,
             'options': self.options,
             'exit': self.ext,
-            'explore': self.randrepo
+            'explore': self.randrepo,
+            'help':self.help,
         }
 
+    def help(self,nothing):
+        for i, pair in enumerate(self.keyword_mapping.items()):
+            key, val = pair
+            if key != "help":
+                print(f"command {i}: key")
+                print(val.__doc__)
     def map_input(self, input_text):
         """
         Maps user input to corresponding functions based on keywords.
