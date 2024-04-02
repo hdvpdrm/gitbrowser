@@ -1,5 +1,6 @@
 import importlib
 import sys
+import os
 
 def install_package(module_name,head_list):
     import subprocess
@@ -41,13 +42,15 @@ def main():
     # Initialize the Listener with the Fetcher
     _listener = commandline.Listener(_fetcher)
 
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     # Command-line interface loop
     while True:
         try:
             text_input = str(input(".. "))
             _listener.map_input(text_input)
         except KeyboardInterrupt as _:
-            print("quit...")
+            print("/nquit...")
             sys.exit(0)
 
 if __name__ == '__main__':
