@@ -59,6 +59,18 @@ options perpage [count]
 Exit
 ```bash
 exit
+
+```bash
+help [command]
+
+if command isn't specified, then print help page for every command
+```
+
+```bash
+clear
+
+clear terminal screen
+```
 ```
 
 ## License
