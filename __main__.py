@@ -23,7 +23,9 @@ def install_module(module_name):
                 print("Seems like you don't have pip!")
             
 
-
+def print_greetings():
+    print("Welcome to the gitbrowser's fork by Hdvpdrm!")
+    print("Print help to see available commands.")
 def main():
     # Install modules
     required_modules = ['requests', 'random_word', 'webbrowser', "tqdm"]
@@ -43,6 +45,7 @@ def main():
     _listener = commandline.Listener(_fetcher)
 
     os.system('cls' if os.name == 'nt' else 'clear')
+    print_greetings()
     
     # Command-line interface loop
     while True:
