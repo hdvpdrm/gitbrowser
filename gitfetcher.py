@@ -130,9 +130,13 @@ class Fetcher:
         """
         url = self.url.replace(self.queryplaceholder, query)
 
-        with open("settings.json", 'r') as file:
-            data = json.load(file)
-            url = url.replace(self.perpageplaceholder, str(data["perpage"]))
+        
+        data ={
+        "outputfolder": "",
+        "perpage": "15"
+        }
+        
+        url = url.replace(self.perpageplaceholder, data["perpage"])
 
         response = requests.get(url)
         data = response.json()
