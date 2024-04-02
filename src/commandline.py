@@ -26,12 +26,22 @@ class Listener:
             'help':self.help,
         }
 
-    def help(self,nothing):
+    
+    def help(self,command):
+        if command is not None:
+            if command in self.keyword_mapping.keys():
+                print(f" command: {command}")
+                print(self.keyword_mapping[command].__doc__)
+            else:
+                print(f"{command} doesn't exist!")
+            return
+        
         for i, pair in enumerate(self.keyword_mapping.items()):
             key, val = pair
             if key != "help":
-                print(f"command {i}: key")
+                print(f"command {i}: {key}")
                 print(val.__doc__)
+                
     def map_input(self, input_text):
         """
         Maps user input to corresponding functions based on keywords.
