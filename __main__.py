@@ -1,6 +1,7 @@
 import importlib
 import sys
 import os
+from color import *
 
 def install_package(module_name,head_list):
     import subprocess
@@ -24,8 +25,11 @@ def install_module(module_name):
             
 
 def print_greetings():
-    print("Welcome to the gitbrowser's fork by Hdvpdrm!")
-    print("Print help to see available commands.")
+    project  = colorize(bcolors.OKBLUE,"gitbrowser")
+    dev_name = colorize(bcolors.OKBLUE,"Hdvpdrm")
+    help = colorize(bcolors.OKGREEN,"help")
+    print(f"Welcome to the {project}'s fork by {dev_name}!")
+    print(f"Print {help} to see available commands.")
 def main():
     # Install modules
     required_modules = ['requests', 'random_word', 'webbrowser', "tqdm"]
