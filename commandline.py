@@ -76,6 +76,17 @@ class Listener:
         else:
             print("Invalid input format")
 
+    def _check_argument(self, arg,command):
+        '''
+        check is command argument correct.
+        '''
+        if arg is None:
+            command_str = colorize(bcolors.OKGREEN,command)
+            help = colorize(bcolors.OKBLUE,f"help {command}")
+            print(f"no argument was provided for {command_str}!. Use {help}.")
+            return False
+        return True
+        
     def search(self, query):
         """
         Executes a search for GitHub repositories based on the provided query and displays the list.
@@ -83,6 +94,8 @@ class Listener:
         Parameters:
         - query (str): The search query for GitHub repositories.
         """
+        if not self._check_argument(query,"search"): return None
+        
         self.fetcher.get_repo_list(query).display_repo_list()
 
     def select(self, key):
@@ -92,6 +105,8 @@ class Listener:
         Parameters:
         - key (str): The numerical key of the repository to select.
         """
+        if not self._check_argument(key,"select"): return None
+        
         if self.fetcher.currentrepolist is not None:
             if key.isnumeric():
                 self.fetcher.currentrepolist.currentrepository = gitfetcher.Repository(
@@ -109,6 +124,8 @@ class Listener:
         Parameters:
         - optionals (str): Additional options for the selected repository.
         """
+        if not self._check_argument(optionals,"repo"): return None
+        
         if self.fetcher.currentrepolist is not None:
             if self.fetcher.currentrepolist.currentrepository is not None:
                 if optionals == "expand":
@@ -153,6 +170,8 @@ class Listener:
         Parameters:
         - optionals (str): Additional options for configuring the application.
         """
+        if not self._check_argument(optionals,"options"): return None
+        
         if optionals.startswith("perpage "):
             # Change the default search count per page
             parameter = optionals[len("perpage "):]
@@ -190,6 +209,8 @@ class Listener:
         Parameters:
         - count (str): The number of random repositories to retrieve.
         """
+        if not self._check_argument(count,"explore"): return None
+        
         try:
             count = int(count)
         except:
