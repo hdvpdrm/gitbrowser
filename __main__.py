@@ -55,6 +55,8 @@ def main():
         except KeyboardInterrupt as _:
             print("\nquit...")
             sys.exit(0)
+        except EOFError as _:
+            sys.exit(0)
 
 if __name__ == '__main__':
     main()
