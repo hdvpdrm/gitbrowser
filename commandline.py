@@ -3,6 +3,7 @@ import gitfetcher
 import subprocess
 import json
 import os
+from color import *
 
 class Listener:
     """
@@ -39,7 +40,8 @@ class Listener:
     def help(self,command):
         if command is not None:
             if command in self.keyword_mapping.keys():
-                print(f" command: {command}")
+                command_str = colorize(bcolors.OKGREEN,command)
+                print(f" command: {command_str}")
                 print(self.keyword_mapping[command].__doc__)
             else:
                 print(f"{command} doesn't exist!")
@@ -48,7 +50,9 @@ class Listener:
         for i, pair in enumerate(self.keyword_mapping.items()):
             key, val = pair
             if key != "help":
-                print(f"command {i}: {key}")
+                command_str = colorize(bcolors.OKGREEN,key)
+                i_str = colorize(bcolors.OKBLUE,str(i))
+                print(f"command {i_str}: {command_str}")
                 print(val.__doc__)
                 
     def map_input(self, input_text):
