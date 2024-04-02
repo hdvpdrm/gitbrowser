@@ -2,6 +2,7 @@ import re
 import gitfetcher
 import subprocess
 import json
+import os
 
 class Listener:
     """
@@ -24,9 +25,17 @@ class Listener:
             'exit': self.ext,
             'explore': self.randrepo,
             'help':self.help,
+            'clear':self.clear
         }
 
-    
+    def clear(self, command):
+        """
+        Clear the terminal screen.
+
+        Parameters:
+        No parameters.
+        """
+        os.system('cls' if os.name == 'nt' else 'clear')
     def help(self,command):
         if command is not None:
             if command in self.keyword_mapping.keys():
