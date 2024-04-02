@@ -1,6 +1,7 @@
 import importlib
 import sys
 import os
+import readline
 from color import *
 
 def install_package(module_name,head_list):
