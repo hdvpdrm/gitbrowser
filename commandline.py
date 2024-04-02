@@ -22,7 +22,7 @@ class Listener:
             'search': self.search,
             'select': self.select,
             'repo': self.repo,
-            'options': self.options,
+            #'options': self.options,
             'exit': self.ext,
             'explore': self.randrepo,
             'help':self.help,
@@ -123,7 +123,15 @@ class Listener:
 
         Parameters:
         - optionals (str): Additional options for the selected repository.
+
+        Examples:
+        repo expand: Display detailed information about the selected repository
+        repo open  : Open the repository in the default web browser
+        repo clone <directory>: Clone the repository into a specified directory <directory>
+        repo details <detail> : Display specific details about the repository <detail>.
+                                Such as language, e.t.c
         """
+        #TODO: provide better documentation for repo details
         if not self._check_argument(optionals,"repo"): return None
         
         if self.fetcher.currentrepolist is not None:
@@ -144,18 +152,18 @@ class Listener:
                 elif optionals.startswith("clone "):
                     # Clone the repository into a specified folder
                     parameter = optionals[len("clone "):]
+                    #check parameter
                     if parameter is not None:
-                        subprocess.run(f"git clone {self.fetcher.currentrepolist.currentrepository.url} {parameter}")
+                        try:
+                            subprocess.run(f"git clone {self.fetcher.currentrepolist.currentrepository.url} {parameter}")
+                        except Exception as e:
+                            print("Failed to clone repo!", str(e))
                     else:
                         print("Specify the folder you want to clone in")
-                elif optionals.startswith("clone"):
-                    # Clone the repository with optional output folder or use default settings
-                    with open("settings.json", 'r') as file:
-                        data = json.load(file)
-                        if data["outputfolder"] is not None and data["outputfolder"] != "":
-                            subprocess.run(f"git clone {self.fetcher.currentrepolist.currentrepository.url} {data['outputfolder']}")
-                        else:
-                            print("You must either specify the clone path or set a clone folder default. repo clone PATH / options clonefolder PATH")
+                #elif optionals.startswith("clone"):
+                #    # Clone the repository with optional output folder or use default settings
+                #    subprocess.run(f"git clone {self.fetcher.currentrepolist.currentrepository.url} {data['outputfolder']}")
+                       
                 else:
                     print("Invalid option")
             else:
@@ -163,6 +171,7 @@ class Listener:
         else:
             print("You must search repos first. search [keywords]")
 
+    '''Note: commented, because there is a better way for application configuration
     def options(self, optionals):
         """
         Adjusts various options related to the application.
@@ -192,7 +201,8 @@ class Listener:
             print(f"Changed default output folder to {parameter}")
         else:
             print("Invalid option")
-
+    '''
+    
     def ext(self, optionals):
         """
         Exits the command-line interface.
