@@ -155,8 +155,10 @@ class Listener:
                     #check parameter
                     if parameter is not None:
                         try:
-                            print("hey")
-                            subprocess.run(f"git clone {self.fetcher.currentrepolist.currentrepository.url} {parameter}".split())
+                            
+                            url  = self.fetcher.currentrepolist.currentrepository.url
+                            path = os.path.expanduser(parameter)
+                            subprocess.run(f"git clone {url} {path}".split())
                         except Exception as e:
                             print("Failed to clone repo!", str(e))
                     else:
